@@ -1,140 +1,169 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dart 문법 정리</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dart 문법 정리</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
 
-    .container {
-      max-width: 800px;
-      margin: auto;
-      padding: 20px;
-    }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+        }
 
-    h1 {
-      color: #333;
-      font-size: 24px;
-      margin-bottom: 10px;
-    }
+        h1 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
 
-    ul {
-      list-style-type: disc;
-      margin-left: 20px;
-    }
+        ul {
+            list-style-type: disc;
+            margin-left: 20px;
+        }
 
-    a {
-        color:#007bff ;
-        text-decoration:none ;
-     }
-    
-     a:hover{
-         text-decoration :underline ;
-     }
-     
-     p{
-         margin-top :5 px ; 
-         margin-bottom :15 px ; 
-         line-height:normal ; 
-         font-size :16 px ; 
-     }
-     
-     /* 추가 스타일 */
-     
-   .week-heading{
-       background-color:#f2f2f2 ;
-       padding :10 px ;
-       border-radius :5 px ;
-   }
-   
-   .week-content{
-       margin-left :30 px ;
-   }
-   
-   .week-link:hover{
-       background-color:#f7f7f7 ;
-   }
-   
-   /* 반응형 스타일 */
-   
- @media screen and (max-width :600px) {
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
 
-body{margin :
-10 px ;padding :
-0 px ;font -
-size :
-14 px ;line -
-height:normal ;
+        a:hover {
+            text-decoration: underline;
+        }
 
-}h1{font -
-size :
-20 px ;margin-bottom :
-5 px ;
+        p {
+            margin-top: 5 px;
+            margin-bottom: 15 px;
+            line-height: normal;
+            font-size: 16 px;
+        }
 
-}ul{list -
-style-type:none;padding-left :
-0
-px;margin-left :-
-10
-px ;
+        /* 추가 스타일 */
 
-}li{padding-left :
+        .week-heading {
+            padding: 10 px;
+            border-radius: 5 px;
+        }
 
-li{padding-top :
+        .week-content {
+            margin-left: 30 px;
+        }
 
-p{margin-bottom :
+        .week-link:hover {
+            background-color: #f7f7f7;
+        }
 
-}.week-heading{padding:
+        /* 반응형 스타일 */
 
-}.week-content{margin-
+        @media screen and (max-width :600px) {
 
-}a{text-decoration:
+            body {
+                margin:
+                    10 px;
+                padding:
+                    0 px;
+                font - size:
+                    14 px;
+                line - height: normal;
 
-a:hover {text-decoration:
-</style >
-</head >
-<body >
+            }
 
-<div class =" container ">
+            h1 {
+                font - size:
+                    20 px;
+                margin-bottom:
+                    5 px;
 
-<h1 >1주차. 연산자, 자료형, 변수, 흐름제어</h1 >
-<ul class =" week-list ">
-<li >
-<div class =" week-heading "><a class =" week-link " href =" https://windy-bedbug-ef3.notion.site/239968dc8ed54f4bbb7e457fab7800ea?pvs=4 " target =" _blank ">연산자</a></div >
-</li >
+            }
 
-<li >
-<div class =" week-heading "><a class =" week-link " href =" https://windy-bedbug-ef3.notion.site/a87a2e9efcb94a0db0a089393d9bba48?pvs=4 " target =" _blank ">자료형 (late, final, const)</a></div >
+            ul {
+                list - style-type: none;
+                padding-left:
+                    0 px;
+                margin-left: - 10 px;
 
-</li>
+            }
 
-<li>
-<div class="week-heading"><a class="week-link" href="https://windy-bedbug-ef3.notion.site/d0dd75efacd74e99a9aeefd0bc14430e?pvs=4" target="_blank">변수 (List, map, set, enum)</a></div>
+            li {
+                padding-left : li {
+                    padding-top : p {
+                        margin-bottom:
 
-</li>
+                    }
 
-<li>
-<div class="week-heading"><a class="week-link" href="https://windy-bedbug-ef3.notion.site/56c19e8a095d427790c064298ec0e240?pvs=4" target="_blank">흐름제어 (if문, 삼항연산자)</a></div>
-</li>
+                    .week-heading {
+                        padding:
 
-</ul>
+                    }
 
-<h1>2주차. 클래스, 함수, OOP</h1>
-<ul class =" week-list ">
-<li >
-<div class =" week-heading "><a class =" week-link " href =" https://windy-bedbug-ef3.notion.site/27afc2e9eb1849ffbc3117acbacba7a7?pvs=4 " target =" _blank ">클래스</a></div >
+                    .week-content {
+                        margin-
+                    }
 
-</li >
+                    a {
+                        text-decoration: a:hover {
+                            text-decoration:
+    </style>
+</head>
 
-<li >
-<div class =" week-heading "><a class =" week-link " href =" https://windy-bedbug-ef3.notion.site/0be36487d63e47afa63107b412e85368?pvs=4 " target =" _blank ">함수</a></div >
+<body>
 
- </li >
+    <div class=" container ">
 
-<li >
- <div class = "week-heading" ><a class = "week-link"href = "https://windy-bedbug-ef3.notion.site/OOP-c6df914d17e440c79e9f0b86caac6ef0?pvs=4 "target ="_blank">OOP(상속 , 다형성 , 캡슐화 ) </a></div>
+        <h1>1주차. 연산자, 자료형, 변수, 흐름제어</h1>
+        <ul class=" week-list ">
+            <li>
+                <div class=" week-heading "><a class=" week-link "
+                        href=" https://windy-bedbug-ef3.notion.site/239968dc8ed54f4bbb7e457fab7800ea?pvs=4 "
+                        target=" _blank ">연산자</a></div>
+            </li>
+
+            <li>
+                <div class=" week-heading "><a class=" week-link "
+                        href=" https://windy-bedbug-ef3.notion.site/a87a2e9efcb94a0db0a089393d9bba48?pvs=4 "
+                        target=" _blank ">자료형 (late, final, const)</a></div>
+
+            </li>
+
+            <li>
+                <div class="week-heading"><a class="week-link"
+                        href="https://windy-bedbug-ef3.notion.site/d0dd75efacd74e99a9aeefd0bc14430e?pvs=4"
+                        target="_blank">변수 (List, map, set, enum)</a></div>
+
+            </li>
+
+            <li>
+                <div class="week-heading"><a class="week-link"
+                        href="https://windy-bedbug-ef3.notion.site/56c19e8a095d427790c064298ec0e240?pvs=4"
+                        target="_blank">흐름제어 (if문, 삼항연산자)</a></div>
+            </li>
+
+        </ul>
+
+        <h1>2주차. 클래스, 함수, OOP</h1>
+        <ul class=" week-list ">
+            <li>
+                <div class=" week-heading "><a class=" week-link "
+                        href=" https://windy-bedbug-ef3.notion.site/27afc2e9eb1849ffbc3117acbacba7a7?pvs=4 "
+                        target=" _blank ">클래스</a></div>
+
+            </li>
+
+            <li>
+                <div class=" week-heading "><a class=" week-link "
+                        href=" https://windy-bedbug-ef3.notion.site/0be36487d63e47afa63107b412e85368?pvs=4 "
+                        target=" _blank ">함수</a></div>
+
+            </li>
+
+            <li>
+                <div class="week-heading"><a class="week-link"
+                        href="https://windy-bedbug-ef3.notion.site/OOP-c6df914d17e440c79e9f0b86caac6ef0?pvs=4 "
+                        target="_blank">OOP(상속 , 다형성 , 캡슐화 ) </a></div>
