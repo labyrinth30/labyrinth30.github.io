@@ -143,7 +143,7 @@
 
         /* --- 5. Table Style --- */
         .table-wrapper {
-            overflow-x: auto; /* 모바일 대응 */
+            overflow-x: auto;
         }
 
         table {
@@ -171,7 +171,6 @@
             font-size: 0.95rem;
         }
 
-        /* 첫 번째 열(기간) 중앙 정렬 */
         td:nth-child(1) { text-align: center; color: #888; font-size: 0.9rem;}
 
         tr:hover { background-color: #fafafa; }
@@ -179,7 +178,7 @@
         /* --- 6. Card Grid Style --- */
         .grid-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* 카드 너비 최소값 약간 증가 */
             gap: 30px;
         }
 
@@ -206,7 +205,7 @@
         }
 
         .card-body {
-            padding: 20px;
+            padding: 25px;
             text-align: center;
             flex-grow: 1;
             display: flex;
@@ -215,7 +214,7 @@
         }
 
         .card_title {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             font-weight: 700;
             margin-bottom: 5px;
         }
@@ -224,10 +223,8 @@
             font-size: 0.95rem;
             color: var(--text-light);
             margin-bottom: 10px;
-            min-height: 24px;
         }
 
-        /* 새로 추가된 역할(Role) 배지 스타일 */
         .card_role {
             font-size: 0.85rem;
             color: var(--primary-color);
@@ -239,22 +236,48 @@
             display: inline-block;
         }
 
+        /* --- 추가된 상세 설명 리스트 스타일 --- */
+        .card_features {
+            text-align: left; /* 리스트는 왼쪽 정렬 */
+            width: 100%;
+            font-size: 0.9rem;
+            color: #555;
+            margin-bottom: 20px;
+            padding-left: 10px; /* 내부 여백 */
+        }
+
+        .card_features li {
+            position: relative;
+            padding-left: 15px;
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        /* 리스트 앞의 점(bullet) 커스텀 */
+        .card_features li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
         .btn-view {
             margin-top: auto;
             display: inline-block;
-            padding: 8px 24px;
+            padding: 10px 30px;
             background-color: var(--primary-color);
             color: white;
-            border-radius: 20px;
-            font-size: 0.9rem;
+            border-radius: 25px;
+            font-size: 0.95rem;
             transition: background-color 0.3s;
+            font-weight: 500;
         }
 
         .btn-view:hover {
             background-color: #357abd;
         }
 
-        /* 반응형 폰트 사이즈 조절 */
         @media (max-width: 768px) {
             header h1 { font-size: 2rem; }
             .content-box { padding: 25px; }
@@ -339,7 +362,16 @@
             <div class="card-body">
                 <p class="card_title">kok kok</p>
                 <p class="card_desc">함께 하는 예약 서비스</p>
-                <p class="card_role">NestJS Backend / BE 팀장</p>
+                <p class="card_role">NestJS Backend / 팀장</p>
+
+                <!-- 상세 구현 내용 리스트 추가 -->
+                <ul class="card_features">
+                    <li>FCM 기반 푸쉬 알림 기능 구현</li>
+                    <li>커스텀 에러 로직 및 RBAC 권한 분리</li>
+                    <li>D-N룰 도입 및 슬랙봇 PR 알림 자동화</li>
+                    <li>S3 Presigned URL 도입으로 보안성 강화</li>
+                </ul>
+
                 <a href="https://github.com/mash-up-kr/HGDGDS-Node" target="_blank" class="btn-view">자세히 보기</a>
             </div>
         </div>
@@ -350,7 +382,15 @@
             <div class="card-body">
                 <p class="card_title">방 PRO</p>
                 <p class="card_desc">방탈출 예약 및 커뮤니티 서비스</p>
-                <p class="card_role">NestJS Backend / BE 팀장</p>
+                <p class="card_role">NestJS Backend / 팀장</p>
+
+                <!-- 상세 구현 내용 리스트 추가 -->
+                <ul class="card_features">
+                    <li>TypeORM 인덱스 도입으로 쿼리 최적화</li>
+                    <li>선호도 기반(난이도, 지역 등) 추천 로직</li>
+                    <li>FuzzyModule 활용 유사 단어 검색 구현</li>
+                </ul>
+
                 <a href="https://github.com/Skhuthon/Skhuthon_0th_TEAM03_BE" target="_blank" class="btn-view">자세히 보기</a>
             </div>
         </div>
@@ -362,6 +402,14 @@
                 <p class="card_title">Co-Fence</p>
                 <p class="card_desc">산업 현장 근로관리 앱</p>
                 <p class="card_role">Flutter FE / 프로젝트 팀장</p>
+
+                <!-- 상세 구현 내용 리스트 추가 -->
+                <ul class="card_features">
+                    <li>Riverpod 기반 상태 관리 패턴 적용</li>
+                    <li>FCM 기반 푸쉬 알림 기능 구현</li>
+                    <li>OAuth 2.0 (Google, Kakao) 로그인</li>
+                </ul>
+
                 <a href="https://github.com/Co-Fence/Co-Fence-App" target="_blank" class="btn-view">자세히 보기</a>
             </div>
         </div>
@@ -370,11 +418,13 @@
 </div>
 
 <script>
+    // ▼▼▼ Velog ID ▼▼▼
     const velogID = 'ayeon0';
-    // ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲
+    // ▲▲▲▲▲▲▲▲▲▲▲▲▲▲
+
+    // 캐시 무시를 위해 시간값 추가
     const timeStamp = new Date().getTime();
     const rssUrl = `https://v2.velog.io/rss/${velogID}?t=${timeStamp}`;
-
     const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
 
     fetch(apiUrl)
@@ -386,7 +436,6 @@
             title.innerText = `📝 ${velogID}.log Recent Posts`;
             list.innerHTML = '';
 
-            // 최신글 5개
             const items = data.items.slice(0, 5);
 
             items.forEach(item => {
@@ -395,7 +444,6 @@
                 a.href = item.link;
                 a.target = '_blank';
 
-                // 날짜 포맷팅 (YYYY-MM-DD)
                 const date = new Date(item.pubDate);
                 const dateStr = date.toISOString().split('T')[0];
 
