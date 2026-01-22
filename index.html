@@ -178,8 +178,9 @@
         /* --- 6. Card Grid Style --- */
         .grid-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* 카드 너비 최소값 약간 증가 */
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 30px;
+            margin-bottom: 80px; /* 프로젝트 섹션 아래 여백 추가 */
         }
 
         .card {
@@ -236,14 +237,14 @@
             display: inline-block;
         }
 
-        /* --- 추가된 상세 설명 리스트 스타일 --- */
+        /* 상세 설명 리스트 스타일 */
         .card_features {
-            text-align: left; /* 리스트는 왼쪽 정렬 */
+            text-align: left;
             width: 100%;
             font-size: 0.9rem;
             color: #555;
             margin-bottom: 20px;
-            padding-left: 10px; /* 내부 여백 */
+            padding-left: 10px;
         }
 
         .card_features li {
@@ -253,7 +254,6 @@
             line-height: 1.5;
         }
 
-        /* 리스트 앞의 점(bullet) 커스텀 */
         .card_features li::before {
             content: '•';
             position: absolute;
@@ -301,16 +301,66 @@
 
 <div class="container">
 
-    <!-- 1. Velog Section -->
-    <h2 class="section-title">Latest Posts</h2>
-    <div class="content-box">
-        <div class="blog-header" id="blog-title">📝 My Blog Posts</div>
-        <ul class="blog-list" id="blog-list">
-            <li style="text-align: center; color: #999;">Loading posts...</li>
-        </ul>
+    <!-- 1. Projects Section (가장 위로 이동) -->
+    <h2 class="section-title">Projects</h2>
+    <div class="grid-container">
+        <!-- Kok Kok Card -->
+        <div class="card">
+            <img class="card_img" src="./asset/kokkok.png" alt="kok kok">
+            <div class="card-body">
+                <p class="card_title">kok kok</p>
+                <p class="card_desc">함께 하는 예약 서비스</p>
+                <p class="card_role">NestJS Backend / 팀장</p>
+
+                <ul class="card_features">
+                    <li>FCM 기반 푸쉬 알림 기능 구현</li>
+                    <li>커스텀 에러 로직 및 RBAC 권한 분리</li>
+                    <li>D-N룰 도입 및 슬랙봇 PR 알림 자동화</li>
+                    <li>S3 Presigned URL 도입으로 보안성 강화</li>
+                </ul>
+
+                <a href="https://github.com/mash-up-kr/HGDGDS-Node" target="_blank" class="btn-view">자세히 보기</a>
+            </div>
+        </div>
+
+        <!-- Bang Pro Card -->
+        <div class="card">
+            <img class="card_img" src="./asset/bangpro.png" alt="방 PRO">
+            <div class="card-body">
+                <p class="card_title">방 PRO</p>
+                <p class="card_desc">방탈출 예약 및 커뮤니티 서비스</p>
+                <p class="card_role">NestJS Backend / 팀장</p>
+
+                <ul class="card_features">
+                    <li>TypeORM 인덱스 도입으로 쿼리 최적화</li>
+                    <li>선호도 기반(난이도, 지역 등) 추천 로직</li>
+                    <li>FuzzyModule 활용 유사 단어 검색 구현</li>
+                </ul>
+
+                <a href="https://github.com/Skhuthon/Skhuthon_0th_TEAM03_BE" target="_blank" class="btn-view">자세히 보기</a>
+            </div>
+        </div>
+
+        <!-- Co-Fence Card -->
+        <div class="card">
+            <img class="card_img" src="./asset/cofence.png" alt="Co-Fence">
+            <div class="card-body">
+                <p class="card_title">Co-Fence</p>
+                <p class="card_desc">산업 현장 근로관리 앱</p>
+                <p class="card_role">Flutter FE / 프로젝트 팀장</p>
+
+                <ul class="card_features">
+                    <li>Riverpod 기반 상태 관리 패턴 적용</li>
+                    <li>FCM 기반 푸쉬 알림 기능 구현</li>
+                    <li>OAuth 2.0 (Google, Kakao) 로그인</li>
+                </ul>
+
+                <a href="https://github.com/Co-Fence/Co-Fence-App" target="_blank" class="btn-view">자세히 보기</a>
+            </div>
+        </div>
     </div>
 
-    <!-- 2. History Section -->
+    <!-- 2. History Section (중간) -->
     <h2 class="section-title">History</h2>
     <div class="content-box">
         <div class="table-wrapper">
@@ -353,66 +403,13 @@
         </div>
     </div>
 
-    <!-- 3. Projects Section -->
-    <h2 class="section-title">Projects</h2>
-    <div class="grid-container">
-        <!-- Kok Kok Card -->
-        <div class="card">
-            <img class="card_img" src="./asset/kokkok.png" alt="kok kok">
-            <div class="card-body">
-                <p class="card_title">kok kok</p>
-                <p class="card_desc">함께 하는 예약 서비스</p>
-                <p class="card_role">NestJS Backend / BE 팀장</p>
-
-                <!-- 상세 구현 내용 리스트 추가 -->
-                <ul class="card_features">
-                    <li>Docker 멀티 스테이지 빌드로 기존 이미지 용량 4.14GB에서 2.6GB로 축소</li>
-                    <li>커스텀 에러 코드 및 RBAC 권한 분리</li>
-                    <li>D-N룰 도입 및 슬랙봇 PR 알림 자동화</li>
-                    <li>S3 Presigned URL 도입으로 보안성 강화</li>
-                </ul>
-
-                <a href="https://github.com/mash-up-kr/HGDGDS-Node" target="_blank" class="btn-view">자세히 보기</a>
-            </div>
-        </div>
-
-        <!-- Bang Pro Card -->
-        <div class="card">
-            <img class="card_img" src="./asset/bangpro.png" alt="방 PRO">
-            <div class="card-body">
-                <p class="card_title">방 PRO</p>
-                <p class="card_desc">방탈출 예약 및 커뮤니티 서비스</p>
-                <p class="card_role">NestJS Backend / BE 팀장</p>
-
-                <!-- 상세 구현 내용 리스트 추가 -->
-                <ul class="card_features">
-                    <li>TypeORM 인덱스 도입으로 검색 쿼리 최적화</li>
-                    <li>유저 선호도 기반(난이도, 지역 등) 추천 로직</li>
-                    <li>FuzzyModule 활용 유사 단어 검색 구현</li>
-                </ul>
-
-                <a href="https://github.com/Skhuthon/Skhuthon_0th_TEAM03_BE" target="_blank" class="btn-view">자세히 보기</a>
-            </div>
-        </div>
-
-        <!-- Co-Fence Card -->
-        <div class="card">
-            <img class="card_img" src="./asset/cofence.png" alt="Co-Fence">
-            <div class="card-body">
-                <p class="card_title">Co-Fence</p>
-                <p class="card_desc">산업 현장 근로관리 앱</p>
-                <p class="card_role">Flutter FE / 프로젝트 팀장</p>
-
-                <!-- 상세 구현 내용 리스트 추가 -->
-                <ul class="card_features">
-                    <li>Riverpod 기반 상태 관리 패턴 적용</li>
-                    <li>FCM 기반 푸쉬 알림 기능 구현</li>
-                    <li>OAuth 2.0 (Google, Kakao) 로그인</li>
-                </ul>
-
-                <a href="https://github.com/Co-Fence/Co-Fence-App" target="_blank" class="btn-view">자세히 보기</a>
-            </div>
-        </div>
+    <!-- 3. Velog Section (가장 아래) -->
+    <h2 class="section-title">Latest Posts</h2>
+    <div class="content-box">
+        <div class="blog-header" id="blog-title">📝 My Blog Posts</div>
+        <ul class="blog-list" id="blog-list">
+            <li style="text-align: center; color: #999;">Loading posts...</li>
+        </ul>
     </div>
 
 </div>
