@@ -370,11 +370,11 @@
 </div>
 
 <script>
-    // ▼▼▼ Velog ID (아이디가 다르면 여기를 수정하세요) ▼▼▼
     const velogID = 'ayeon0';
     // ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲
+    const timeStamp = new Date().getTime();
+    const rssUrl = `https://v2.velog.io/rss/${velogID}?t=${timeStamp}`;
 
-    const rssUrl = `https://v2.velog.io/rss/${velogID}`;
     const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
 
     fetch(apiUrl)
