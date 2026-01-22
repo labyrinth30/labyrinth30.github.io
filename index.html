@@ -1,70 +1,414 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title> Main </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이윤하 - Portfolio</title>
+    <!-- 구글 폰트 (Noto Sans KR) 로드 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+
     <style>
-        h1 {
-            text-align: center;
+        /* --- 1. Global Styles --- */
+        :root {
+            --primary-color: #4a90e2;
+            --accent-color: #20c997;
+            --bg-color: #f4f7f6;
+            --text-color: #333;
+            --text-light: #666;
+            --white: #ffffff;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
         }
 
-        #txt_welcome {
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; padding: 0; margin: 0; }
+        h1, h2, h3, p { margin: 0; }
+
+        /* --- 2. Header (Hero Section) --- */
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: var(--white);
+            padding: 80px 20px;
             text-align: center;
             margin-bottom: 50px;
         }
 
-        .card {
+        header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .intro-text {
+            font-size: 1.2rem;
+            font-weight: 300;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto 30px auto;
+        }
+
+        .github-link {
+            display: inline-block;
+            padding: 10px 24px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 30px;
+            color: var(--white);
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .github-link:hover {
+            background-color: var(--white);
+            color: #764ba2;
+        }
+
+        /* --- 3. Layout Containers --- */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+            padding-bottom: 100px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background-color: var(--primary-color);
+            margin: 10px auto 0;
+        }
+
+        .content-box {
+            background: var(--white);
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            padding: 40px;
+            margin-bottom: 60px;
+        }
+
+        /* --- 4. Velog Style --- */
+        .blog-header {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--accent-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .blog-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+            transition: transform 0.2s;
+        }
+
+        .blog-list li:last-child { border-bottom: none; }
+
+        .blog-list a {
+            font-size: 1.05rem;
+            color: var(--text-color);
+            display: block;
+        }
+
+        .blog-list a:hover {
+            color: var(--primary-color);
+            transform: translateX(5px);
+            font-weight: 500;
+        }
+
+        /* --- 5. Table Style --- */
+        .table-wrapper {
+            overflow-x: auto; /* 모바일 대응 */
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 16px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        th {
+            background-color: #f8f9fa;
+            font-weight: 600;
+            color: #555;
             text-align: center;
         }
 
-        .card_title {
-            font-size: 20px;
+        td {
+            color: #444;
+            font-size: 0.95rem;
         }
 
-        .card_button {
-            font-size: 13px;
-            width: 150px;
-            height: 30px;
+        /* 첫 번째 열(기간) 중앙 정렬 */
+        td:nth-child(1) { text-align: center; color: #888; font-size: 0.9rem;}
+
+        tr:hover { background-color: #fafafa; }
+
+        /* --- 6. Card Grid Style --- */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #eee;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
         }
 
         .card_img {
-            width: 300px;
-            height: 300px;
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 1px solid #eee;
+        }
+
+        .card-body {
+            padding: 20px;
+            text-align: center;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .card_title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .card_desc {
+            font-size: 0.95rem;
+            color: var(--text-light);
+            margin-bottom: 10px;
+            min-height: 24px;
+        }
+
+        /* 새로 추가된 역할(Role) 배지 스타일 */
+        .card_role {
+            font-size: 0.85rem;
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 20px;
+            background-color: #eef4fc;
+            padding: 5px 12px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+
+        .btn-view {
+            margin-top: auto;
+            display: inline-block;
+            padding: 8px 24px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            transition: background-color 0.3s;
+        }
+
+        .btn-view:hover {
+            background-color: #357abd;
+        }
+
+        /* 반응형 폰트 사이즈 조절 */
+        @media (max-width: 768px) {
+            header h1 { font-size: 2rem; }
+            .content-box { padding: 25px; }
+            th, td { padding: 12px; font-size: 0.85rem; }
         }
     </style>
 </head>
 <body>
-<h1>안녕하세요!</h1>
-<div id="txt_welcome">
-    무엇이든 즐기는 개발자 이윤하입니다. <br>
-    아래는 진행해본 프로젝트입니다.
-    <br>
-    <br>
-    <a href="https://github.com/labyrinth30"> 저의 깃허브에요 </a>
-</div>
-<div style="display:grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px;">
-    <div class="card">
-        <img class="card_img" src="./asset/kokkok.png">
-        <p class="card_title"> kok kok </p>
-        <a href="https://github.com/mash-up-kr/HGDGDS-Node" target="_blank">
-            <input class="card_button" type="button" value="자세히 보러가기">
-        </a>
-    </div>
-    <div class="card">
-        <img class="card_img" src="./asset/bangpro.png">
-        <p class="card_title"> 방 PRO </p>
-        <a href="https://github.com/Skhuthon/Skhuthon_0th_TEAM03_BE" target="_blank">
-            <input class="card_button" type="button" value="자세히 보러가기">
-        </a>
 
+<!-- Header / Hero Section -->
+<header>
+    <h1>안녕하세요! 👋</h1>
+    <div class="intro-text">
+        놀 땐 놀고 일할 땐 일하는 일일놀놀 <b>이윤하</b>입니다.<br>
+        TypeScript와 NestJS를 좋아합니다 🥰
     </div>
-    <div class="card">
-        <img class="card_img" src="./asset/cofence.png">
-        <p class="card_title"> Co-Fence </p>
-        <a href="https://github.com/Co-Fence/Co-Fence-App" target="_blank">
-            <input class="card_button" type="button" value="자세히 보러가기">
-        </a>
+    <a href="https://github.com/labyrinth30" target="_blank" class="github-link">
+        Visit My Github
+    </a>
+</header>
+
+<div class="container">
+
+    <!-- 1. Velog Section -->
+    <h2 class="section-title">Latest Posts</h2>
+    <div class="content-box">
+        <div class="blog-header" id="blog-title">📝 My Blog Posts</div>
+        <ul class="blog-list" id="blog-list">
+            <li style="text-align: center; color: #999;">Loading posts...</li>
+        </ul>
     </div>
+
+    <!-- 2. History Section -->
+    <h2 class="section-title">History</h2>
+    <div class="content-box">
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                <tr>
+                    <th width="25%">기간</th>
+                    <th width="50%">활동명</th>
+                    <th width="25%">역할</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>2025.02 ~ </td>
+                    <td>IT 연합 동아리 Mash-Up</td>
+                    <td>Node Team</td>
+                </tr>
+                <tr>
+                    <td>2023.07 ~ 2024.06</td>
+                    <td>GDG on Campus 성공회대학교 3기</td>
+                    <td>Organizer</td>
+                </tr>
+                <tr>
+                    <td>2024.06.30</td>
+                    <td>성공회대학교 IT 동아리 연합 주최 스쿠톤 0기 대상</td>
+                    <td>NestJS Backend</td>
+                </tr>
+                <tr>
+                    <td>2024.05.07</td>
+                    <td>성공회대학교 제16회 소프트웨어경진대회 1등</td>
+                    <td>Flutter Frontend</td>
+                </tr>
+                <tr>
+                    <td>2023.07 ~ 2024.06</td>
+                    <td>GDG on Campus 성공회대학교 2기</td>
+                    <td>Flutter 파트장</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- 3. Projects Section -->
+    <h2 class="section-title">Projects</h2>
+    <div class="grid-container">
+        <!-- Kok Kok Card -->
+        <div class="card">
+            <img class="card_img" src="./asset/kokkok.png" alt="kok kok">
+            <div class="card-body">
+                <p class="card_title">kok kok</p>
+                <p class="card_desc">함께 하는 예약 서비스</p>
+                <p class="card_role">NestJS Backend / BE 팀장</p>
+                <a href="https://github.com/mash-up-kr/HGDGDS-Node" target="_blank" class="btn-view">자세히 보기</a>
+            </div>
+        </div>
+
+        <!-- Bang Pro Card -->
+        <div class="card">
+            <img class="card_img" src="./asset/bangpro.png" alt="방 PRO">
+            <div class="card-body">
+                <p class="card_title">방 PRO</p>
+                <p class="card_desc">방탈출 예약 및 커뮤니티 서비스</p>
+                <p class="card_role">NestJS Backend / BE 팀장</p>
+                <a href="https://github.com/Skhuthon/Skhuthon_0th_TEAM03_BE" target="_blank" class="btn-view">자세히 보기</a>
+            </div>
+        </div>
+
+        <!-- Co-Fence Card -->
+        <div class="card">
+            <img class="card_img" src="./asset/cofence.png" alt="Co-Fence">
+            <div class="card-body">
+                <p class="card_title">Co-Fence</p>
+                <p class="card_desc">산업 현장 근로관리 앱</p>
+                <p class="card_role">Flutter FE / 프로젝트 팀장</p>
+                <a href="https://github.com/Co-Fence/Co-Fence-App" target="_blank" class="btn-view">자세히 보기</a>
+            </div>
+        </div>
+    </div>
+
 </div>
+
+<script>
+    // ▼▼▼ Velog ID (아이디가 다르면 여기를 수정하세요) ▼▼▼
+    const velogID = 'ayeon0';
+    // ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲
+
+    const rssUrl = `https://v2.velog.io/rss/${velogID}`;
+    const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
+
+    fetch(apiUrl)
+        .then(response => response.json())
+        .then(data => {
+            const list = document.getElementById('blog-list');
+            const title = document.getElementById('blog-title');
+
+            title.innerText = `📝 ${velogID}.log Recent Posts`;
+            list.innerHTML = '';
+
+            // 최신글 5개
+            const items = data.items.slice(0, 5);
+
+            items.forEach(item => {
+                const li = document.createElement('li');
+                const a = document.createElement('a');
+                a.href = item.link;
+                a.target = '_blank';
+
+                // 날짜 포맷팅 (YYYY-MM-DD)
+                const date = new Date(item.pubDate);
+                const dateStr = date.toISOString().split('T')[0];
+
+                a.innerHTML = `<span style="color:#888; font-size:0.85rem; margin-right:8px;">[${dateStr}]</span> ${item.title}`;
+
+                li.appendChild(a);
+                list.appendChild(li);
+            });
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            document.getElementById('blog-list').innerHTML = '<li style="text-align:center">글을 불러올 수 없습니다.</li>';
+        });
+</script>
 </body>
 </html>
