@@ -8,7 +8,7 @@ const projects=(await getCollection('projects')).sort((a,b)=>a.data.number.local
 const content=await Promise.all(projects.map(async project=>({project,cases:await getProjectCases(project.id)})));
 ---
 <BaseLayout title="포트폴리오 인쇄본" print>
-<div class="print-content shell"><header class="print-intro"><span class="eyebrow">BACKEND DEVELOPER · PORTFOLIO</span><h1>이윤하</h1><p>데이터 정합성과 운영 문제를 해결하는 백엔드 개발자</p><p>younha0088@gmail.com · github.com/labyrinth30</p></header>
+<div class="print-content shell"><header class="print-intro"><span class="eyebrow">BACKEND DEVELOPER · PORTFOLIO</span><h1>이윤하</h1><p>데이터 정합성과 운영 문제를 해결하는 백엔드 개발자</p><p>younha0088@gmail.com · github.com/labyrinth30</p><p><a href="https://labyrinth30.github.io/portfolio/">https://labyrinth30.github.io/portfolio/</a></p></header>
 {content.map(({project,cases})=><section class="print-project"><ProjectHeader project={project}/>{cases.map(entry=><CaseStudy entry={entry} print/>)}</section>)}
 </div>
 </BaseLayout>

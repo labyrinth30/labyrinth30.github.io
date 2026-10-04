@@ -81,3 +81,10 @@ test('desktop TOC numbers remain on one line', async ({ page }) => {
   expect(labels).toHaveLength(3);
   for (const label of labels) expect(label.height).toBeLessThanOrEqual(label.lineHeight + 1);
 });
+
+test('print cover links to the public portfolio', async ({ page }) => {
+  await page.goto('print/');
+  const link = page.locator('.print-intro a[href="https://labyrinth30.github.io/portfolio/"]');
+  await expect(link).toBeVisible();
+  await expect(link).toHaveText('https://labyrinth30.github.io/portfolio/');
+});
