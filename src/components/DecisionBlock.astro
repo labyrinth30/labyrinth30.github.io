@@ -1,0 +1,5 @@
+---
+type Props = {readonly role:string;readonly decision:string;readonly tradeoff:string};
+const {role,decision,tradeoff}=Astro.props;
+---
+<dl class="decision-block"><div><dt>내가 맡은 범위</dt><dd>{role}</dd></div><div><dt>선택과 이유</dt><dd>{decision}</dd></div><div><dt>트레이드오프</dt><dd>{tradeoff}</dd></div></dl>

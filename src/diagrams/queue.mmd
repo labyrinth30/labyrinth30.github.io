@@ -1,0 +1,13 @@
+flowchart TB
+  subgraph B[변경 전 설정]
+    BQ[동시 dispatch 5] --> BR[Cloud Run 동시 요청 1]
+    BU[사용자 API] --> BR
+    BR --> BE[처리 자리 경합]
+  end
+  subgraph A[변경 후 설정]
+    AQ[동시 dispatch 1] --> AR[Cloud Run 동시 요청 1]
+    AU[사용자 API] --> AR
+    AW[나머지 작업은 큐 대기] --- AQ
+  end
+  B --> A
+  A --> M[429 감소율은 미측정]

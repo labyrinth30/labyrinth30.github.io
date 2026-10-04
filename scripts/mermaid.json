@@ -1,0 +1,26 @@
+{
+	"theme": "base",
+	"securityLevel": "strict",
+	"htmlLabels": false,
+	"themeVariables": {
+		"fontFamily": "Arial, Apple SD Gothic Neo, Noto Sans CJK KR, Noto Sans KR, sans-serif",
+		"fontSize": "16px",
+		"primaryColor": "#eff0eb",
+		"primaryTextColor": "#20221f",
+		"primaryBorderColor": "#8a9184",
+		"lineColor": "#61655e",
+		"secondaryColor": "#ffffff",
+		"tertiaryColor": "#fafaf8"
+	},
+	"flowchart": {
+		"htmlLabels": false,
+		"curve": "linear",
+		"padding": 18
+	},
+	"sequence": {
+		"useMaxWidth": false,
+		"wrap": true,
+		"width": 170,
+		"height": 55
+	}
+}

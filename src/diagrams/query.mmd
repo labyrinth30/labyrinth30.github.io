@@ -1,0 +1,12 @@
+flowchart TB
+  subgraph B[기존 검색]
+    BO[주문 후보] --> BE[주문별 EXISTS 반복]
+    BE --> BC[목록·count]
+  end
+  subgraph A[개선 검색]
+    AT[관련 테이블 검색] --> AI[별도 SQL로 주문 ID 선별]
+    AI --> AF[ID 조건을 공통 필터에 전달]
+    AF --> AC[목록·count·요약·엑셀]
+  end
+  B --> A
+  A --> M[측정 범위: ID 조회 + count]

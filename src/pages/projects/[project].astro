@@ -1,0 +1,17 @@
+---
+import {getCollection, type CollectionEntry} from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectHeader from '../../components/ProjectHeader.astro';
+import ProjectToc from '../../components/ProjectToc.astro';
+import CaseStudy from '../../components/CaseStudy.astro';
+import {pathTo} from '../../lib/paths';
+import {getProjectCases} from '../../lib/cases';
+export async function getStaticPaths() {return (await getCollection('projects')).map(project=>({params:{project:project.id},props:{project}}));}
+type Props = {readonly project: CollectionEntry<'projects'>};
+const {project}=Astro.props;
+const cases=await getProjectCases(project.id);
+const next=project.id==='gguk' ? {id:'purple',name:'Purple'}:{id:'gguk',name:'GGUK'};
+---
+<BaseLayout title={`${project.data.name} · 설계와 구현`} description={project.data.description}>
+<div class="shell"><a class="back-link" href={pathTo('#projects')}>← 프로젝트 목록</a><ProjectHeader project={project}/><div class="detail-layout"><ProjectToc cases={cases}/><div class="cases">{cases.map(entry=><CaseStudy entry={entry}/>)}</div></div><a class="next-project" href={pathTo(`projects/${next.id}/`)}><span class="eyebrow">다음 프로젝트</span><strong>{next.name} <span aria-hidden="true">→</span></strong></a></div>
+</BaseLayout>

@@ -1,0 +1,14 @@
+---
+import type { CollectionEntry } from 'astro:content';
+type Props = { readonly cases: readonly CollectionEntry<'cases'>[] };
+const {cases} = Astro.props;
+---
+<aside class="project-toc"><details open><summary>이 프로젝트의 설계 기록 <span aria-hidden="true">⌄</span></summary><nav aria-label="사례 목차"><ol>{cases.map(item=><li><a href={`#${item.id}`}><span class="mono">0{item.data.order}</span>{item.data.title}</a></li>)}</ol></nav></details></aside>
+<script>
+const mobile = window.matchMedia('(max-width: 959px)');
+for (const details of document.querySelectorAll<HTMLDetailsElement>('.project-toc details')) {
+  details.open = !mobile.matches;
+  mobile.addEventListener('change', event => {details.open = !event.matches;});
+  details.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {if (mobile.matches) details.open = false;}));
+}
+</script>

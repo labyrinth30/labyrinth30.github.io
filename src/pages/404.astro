@@ -1,0 +1,5 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import {pathTo} from '../lib/paths';
+---
+<BaseLayout title="페이지를 찾을 수 없습니다"><section class="not-found shell"><span class="eyebrow">404 / PAGE NOT FOUND</span><h1>이 페이지는<br />찾을 수 없습니다.</h1><p>주소를 확인하거나 프로젝트 목록에서 다시 시작해 주세요.</p><a class="text-link" href={pathTo()}>홈으로 돌아가기 →</a></section></BaseLayout>

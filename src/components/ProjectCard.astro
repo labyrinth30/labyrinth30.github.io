@@ -1,0 +1,13 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { pathTo } from '../lib/paths';
+type Props = {readonly project: CollectionEntry<'projects'>};
+const {project} = Astro.props;
+const p=project.data;
+---
+<a class="project-card" href={pathTo(`projects/${project.id}/`)}>
+<div class="card-label"><span class="eyebrow">{p.category}</span><span class="mono">/{p.number}</span></div>
+<div class="project-name">{p.name}<span class="project-arrow" aria-hidden="true">↗</span></div>
+<h3>{p.tagline}</h3><p>{p.description}</p>
+<div class="card-bottom"><span>{p.role}<small>{p.focus}</small></span><span class="case-link">사례 보기 <span aria-hidden="true">→</span></span></div>
+</a>

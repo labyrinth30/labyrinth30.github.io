@@ -1,0 +1,19 @@
+sequenceDiagram
+  participant C as 댓글 작성
+  participant DB as 핀·댓글 DB
+  participant D as 핀 삭제
+  alt 작성이 먼저 잠금 획득
+    C->>DB: 활성 핀 FOR SHARE
+    D->>DB: 핀 UPDATE 시도
+    Note over DB,D: 작성 커밋까지 대기
+    C->>DB: 댓글 INSERT·COMMIT
+    D->>DB: 핀 UPDATE 재개
+    D->>DB: 댓글 soft delete·COMMIT
+  else 삭제가 먼저 잠금 획득
+    D->>DB: 핀 UPDATE
+    C->>DB: 활성 핀 FOR SHARE 시도
+    Note over C,DB: 삭제 커밋까지 대기
+    D->>DB: 댓글 soft delete·COMMIT
+    DB-->>C: 활성 핀 없음
+    Note over C: 댓글 작성 거절
+  end

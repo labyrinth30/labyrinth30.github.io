@@ -1,0 +1,17 @@
+---
+import {render, type CollectionEntry} from 'astro:content';
+import DiagramFigure from './DiagramFigure.astro';
+import DecisionBlock from './DecisionBlock.astro';
+type Props = {readonly entry:CollectionEntry<'cases'>;readonly print?:boolean};
+const {entry,print=false}=Astro.props;
+const {Content}=await render(entry);
+const d=entry.data;
+---
+<article class="case-study" id={entry.id}>
+<header class="case-header"><span class="eyebrow">CASE 0{d.order}</span><h2>{d.title}</h2><p class="case-summary">{d.summary}</p></header>
+<DecisionBlock role={d.role} decision={d.decision} tradeoff={d.tradeoff}/>
+<DiagramFigure diagram={d.diagram} caption={d.diagramCaption} title={d.title} prefix={`${print?'print':'detail'}-${entry.id}`} print={print}/>
+<div class="prose"><Content /></div>
+<div class="verification"><h3>검증과 한계</h3><p>{d.verification}</p></div>
+{d.sources.length>0 && <div class="sources"><h3>공개 근거</h3><ul>{d.sources.map(source=><li><a href={source.url}>{source.label} <span aria-hidden="true">↗</span></a></li>)}</ul></div>}
+</article>
