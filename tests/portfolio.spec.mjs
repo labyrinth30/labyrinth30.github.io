@@ -1,17 +1,19 @@
 import { test, expect } from '@playwright/test';
 
-for (const project of ['gguk', 'purple']) {
+const caseCounts = { gguk: 3, purple: 4 };
+
+for (const [project, caseCount] of Object.entries(caseCounts)) {
   test(`project card opens ${project}`, async ({ page }) => {
     await page.goto('./');
     await page.locator(`.project-card[href$="/${project}/"]`).click();
     await expect(page).toHaveURL(new RegExp(`/projects/${project}/$`));
-    await expect(page.locator('.case-study')).toHaveCount(3);
+    await expect(page.locator('.case-study')).toHaveCount(caseCount);
   });
   test(`${project} direct URL survives reload`, async ({ page }) => {
     await page.goto(`projects/${project}/`);
     await page.reload();
     await expect(page.locator('h1')).toContainText(new RegExp(project, 'i'));
-    await expect(page.locator('.diagram-frame img')).toHaveCount(3);
+    await expect(page.locator('.diagram-frame img')).toHaveCount(caseCount);
     expect(await page.locator('.diagram-frame img').evaluateAll(images => images.every(image => image.complete && image.naturalWidth > 0))).toBe(true);
   });
 }
@@ -41,7 +43,7 @@ test('content and original diagram work without JavaScript', async ({ browser, b
   const context = await browser.newContext({ javaScriptEnabled: false, baseURL });
   const page = await context.newPage();
   await page.goto('projects/purple/');
-  await expect(page.locator('.case-study')).toHaveCount(3);
+  await expect(page.locator('.case-study')).toHaveCount(caseCounts.purple);
   await page.locator('.diagram-open').first().click();
   await expect(page).toHaveURL(/\/diagrams\/query.svg$/);
   await expect(page.locator('svg')).toBeVisible();
