@@ -7,7 +7,7 @@ const projects=(await getCollection('projects')).sort((a,b)=>a.data.number.local
 <BaseLayout title="백엔드 개발자 포트폴리오">
 <section class="hero shell"><div class="hero-top"><span class="eyebrow">BACKEND DEVELOPER · PORTFOLIO</span><span class="mono hero-year">2026</span></div>
 <h1>데이터는 단단하게.<br />서비스는 자연스럽게.</h1>
-<div class="hero-bottom"><p>데이터 정합성과 운영 문제를 해결하는<br class="desktop-break" /> 백엔드 개발자 <strong>이윤하</strong>입니다.</p><a href="#projects" class="text-link">프로젝트 살펴보기 <span aria-hidden="true">↓</span></a></div></section>
+<div class="hero-bottom"><p>데이터 정합성과 운영 문제를 해결하는<br class="desktop-break" /> 백엔드 개발자 <strong>이윤하</strong>입니다.</p><a href="mailto:younha0088@gmail.com" class="text-link">younha0088@gmail.com <span aria-hidden="true">↗</span></a></div></section>
 <section id="projects" class="projects-section shell"><div class="section-heading"><h2>선택한 프로젝트</h2><span class="eyebrow">SELECTED WORK / 02</span></div><div class="project-grid">{projects.map(project=><ProjectCard project={project}/>)}</div></section>
 <section class="approach shell"><span class="eyebrow">HOW I WORK</span><p>구현에서 끝내지 않고,<br />선택의 이유와 검증의 한계를 남깁니다.</p><div><span>비동기 처리와 실패 경계</span><span>동시성과 데이터 정합성</span><span>운영 근거에 기반한 개선</span></div></section>
 </BaseLayout>
