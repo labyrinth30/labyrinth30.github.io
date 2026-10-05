@@ -12,6 +12,5 @@ const d=entry.data;
 <DecisionBlock role={d.role} decision={d.decision} tradeoff={d.tradeoff}/>
 <DiagramFigure diagram={d.diagram} caption={d.diagramCaption} title={d.title} prefix={`${print?'print':'detail'}-${entry.id}`} print={print}/>
 <div class="prose"><Content /></div>
-<div class="verification"><h3>검증과 한계</h3><p>{d.verification}</p></div>
 {d.sources.length>0 && <div class="sources"><h3>공개 근거</h3><ul>{d.sources.map(source=><li><a href={source.url}>{source.label} <span aria-hidden="true">↗</span></a></li>)}</ul></div>}
 </article>

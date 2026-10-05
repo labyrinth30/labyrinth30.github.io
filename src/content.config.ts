@@ -12,7 +12,6 @@ const cases = defineCollection({
 		role: requiredText,
 		decision: requiredText,
 		tradeoff: requiredText,
-		verification: requiredText,
 		diagram: z.enum([
 			"async",
 			"concurrency",

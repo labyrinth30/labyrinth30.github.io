@@ -615,21 +615,10 @@ img {
 	background: var(--wash);
 	font-weight: 600;
 }
-.verification {
-	margin-top: var(--space-8);
-	padding: var(--space-6);
-	background: var(--wash);
-}
-.verification h3,
 .sources h3 {
 	font-size: var(--small);
 	font-weight: 600;
 	letter-spacing: 0;
-}
-.verification p {
-	font-size: 14px;
-	color: var(--muted);
-	margin-top: var(--space-3);
 }
 .sources {
 	margin-top: var(--space-6);
@@ -897,12 +886,6 @@ img {
 		padding: var(--space-4);
 		font-size: 11px;
 	}
-	.verification {
-		padding: var(--space-4);
-	}
-	.verification p {
-		font-size: 13px;
-	}
 	.case-study {
 		padding-bottom: var(--space-12);
 		margin-bottom: var(--space-12);
@@ -1094,16 +1077,8 @@ img {
 		min-width: 0;
 		padding: 2mm;
 	}
-	.verification {
-		margin-top: 5mm;
-		padding: 4mm;
-		break-inside: avoid;
-	}
-	.verification p,
 	.sources {
 		font-size: 9pt;
-	}
-	.sources {
 		margin-top: 4mm;
 		break-inside: avoid;
 	}
