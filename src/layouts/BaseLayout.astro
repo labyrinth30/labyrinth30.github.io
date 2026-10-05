@@ -1,8 +1,8 @@
 ---
 import '../styles/global.css';
-import { pathTo } from '../lib/paths';
-type Props = { readonly title: string; readonly description?: string; readonly print?: boolean };
-const {title, description='데이터 정합성과 운영 문제를 해결하는 백엔드 개발자 이윤하의 프로젝트와 설계 기록입니다.', print=false} = Astro.props;
+import { editionPath, editions, type Edition } from '../lib/editions';
+type Props = { readonly title: string; readonly description?: string; readonly print?: boolean; readonly edition?: Edition };
+const {title, description='결제와 비동기 작업을 다뤄온 백엔드 개발자 이윤하의 프로젝트와 설계 기록입니다.', print=false, edition=editions.main} = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 ---
 <!doctype html>
@@ -17,13 +17,13 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
 <body class:list={[{ 'print-view': print }]}>
 <a class="skip-link" href="#main">본문으로 건너뛰기</a>
 <header class="site-header shell">
-<a class="wordmark" href={pathTo()} aria-label="이윤하 포트폴리오 홈">YOUNHA LEE<span>BACKEND ENGINEER</span></a>
-<nav aria-label="주요 메뉴"><a href={pathTo('#projects')}>프로젝트</a><a href="https://github.com/labyrinth30">GitHub <span aria-hidden="true">↗</span></a><a href={pathTo('downloads/younha-portfolio.pdf')} download>PDF <span aria-hidden="true">↓</span></a></nav>
+<a class="wordmark" href={editionPath(edition)} aria-label="이윤하 포트폴리오 홈">YOUNHA LEE<span>BACKEND ENGINEER</span></a>
+<nav aria-label="주요 메뉴"><a href={editionPath(edition, '#projects')}>프로젝트</a><a href="https://github.com/labyrinth30">GitHub <span aria-hidden="true">↗</span></a><a href={editionPath(edition, 'downloads/younha-portfolio.pdf')} download>PDF <span aria-hidden="true">↓</span></a></nav>
 </header>
 <main id="main"><slot /></main>
 <footer class="site-footer shell">
 <div><span class="eyebrow">LET’S CONNECT</span><a class="contact" href="mailto:younha0088@gmail.com">younha0088@gmail.com <span aria-hidden="true">↗</span></a></div>
-<div class="footer-note"><span>이윤하 · Backend Developer</span><a href="https://github.com/labyrinth30">GitHub ↗</a><a href={pathTo('downloads/younha-portfolio.pdf')} download>포트폴리오 PDF ↓</a></div>
+<div class="footer-note"><span>이윤하 · Backend Developer</span><a href="https://github.com/labyrinth30">GitHub ↗</a><a href={editionPath(edition, 'downloads/younha-portfolio.pdf')} download>포트폴리오 PDF ↓</a></div>
 </footer>
 </body>
 </html>

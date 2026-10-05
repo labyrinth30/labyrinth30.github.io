@@ -30,7 +30,6 @@ const projects = defineCollection({
 	loader: glob({ pattern: "*.json", base: "./src/content/projects" }),
 	schema: z.object({
 		name: requiredText,
-		number: requiredText,
 		category: requiredText,
 		tagline: requiredText,
 		description: requiredText,

@@ -1,9 +1,9 @@
 ---
 import { getCollection, type CollectionEntry } from 'astro:content';
-import ProjectPage from '../../components/ProjectPage.astro';
-import { editions } from '../../lib/editions';
+import ProjectPage from '../../../components/ProjectPage.astro';
+import { editions } from '../../../lib/editions';
 export async function getStaticPaths() { return (await getCollection('projects')).map(project => ({ params: { project: project.id }, props: { project } })); }
 type Props = { readonly project: CollectionEntry<'projects'> };
 const { project } = Astro.props;
 ---
-<ProjectPage project={project} edition={editions.main} />
+<ProjectPage project={project} edition={editions.gguk} />

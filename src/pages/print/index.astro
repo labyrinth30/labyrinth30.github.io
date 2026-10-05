@@ -1,14 +1,5 @@
 ---
-import {getCollection} from 'astro:content';
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import ProjectHeader from '../../components/ProjectHeader.astro';
-import CaseStudy from '../../components/CaseStudy.astro';
-import {getProjectCases} from '../../lib/cases';
-const projects=(await getCollection('projects')).sort((a,b)=>a.data.number.localeCompare(b.data.number));
-const content=await Promise.all(projects.map(async project=>({project,cases:await getProjectCases(project.id)})));
+import PrintPage from '../../components/PrintPage.astro';
+import { editions } from '../../lib/editions';
 ---
-<BaseLayout title="포트폴리오 인쇄본" print>
-<div class="print-content shell"><header class="print-intro"><span class="eyebrow">BACKEND DEVELOPER · PORTFOLIO</span><h1>이윤하</h1><p>NestJS로 결제와 비동기 작업을 다뤄온 백엔드 개발자</p><p>younha0088@gmail.com · github.com/labyrinth30</p><p><a href="https://labyrinth30.github.io/">https://labyrinth30.github.io/</a></p></header>
-{content.map(({project,cases})=><section class="print-project"><ProjectHeader project={project}/>{cases.map(entry=><CaseStudy entry={entry} print/>)}</section>)}
-</div>
-</BaseLayout>
+<PrintPage edition={editions.main} />
