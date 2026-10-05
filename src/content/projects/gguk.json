@@ -1,6 +1,5 @@
 {
 	"name": "GGUK",
-	"number": "01",
 	"category": "SIDE PROJECT · MASH-UP",
 	"tagline": "비동기 저장과 동시성 처리",
 	"description": "Instagram 링크에서 장소를 뽑아 친구와 같이 쓰는 방에 저장하는 서비스입니다. Google Play에 출시했습니다.",

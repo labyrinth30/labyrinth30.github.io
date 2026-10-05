@@ -97,3 +97,50 @@ test('GGUK links to its Google Play listing', async ({ page }) => {
   await page.goto('projects/purple/');
   await expect(page.locator('.project-links')).toHaveCount(0);
 });
+
+const editionCases = [
+  { home: './', prefix: '/', order: ['purple', 'gguk'], names: ['Purple', 'GGUK'] },
+  { home: 'portfolio/', prefix: '/portfolio/', order: ['gguk', 'purple'], names: ['GGUK', 'Purple'] },
+];
+
+for (const edition of editionCases) {
+  test(`${edition.prefix} lists ${edition.names[0]} as project 01`, async ({ page }) => {
+    await page.goto(edition.home);
+    const cards = page.locator('.project-card');
+    await expect(cards).toHaveCount(2);
+    for (const [index, id] of edition.order.entries()) {
+      await expect(cards.nth(index)).toHaveAttribute('href', `${edition.prefix}projects/${id}/`);
+      await expect(cards.nth(index).locator('.card-label .mono')).toHaveText(`/0${index + 1}`);
+    }
+    await expect(page.locator('.wordmark')).toHaveAttribute('href', edition.prefix);
+    await expect(page.locator('nav a[href$="younha-portfolio.pdf"]')).toHaveAttribute('href', `${edition.prefix}downloads/younha-portfolio.pdf`);
+  });
+
+  test(`${edition.prefix} project pages keep their edition numbering and links`, async ({ page }) => {
+    for (const [index, id] of edition.order.entries()) {
+      await page.goto(`${edition.home}projects/${id}/`);
+      await expect(page.locator('.project-header .eyebrow')).toContainText(`PROJECT 0${index + 1}`);
+      await expect(page.locator('.back-link')).toHaveAttribute('href', `${edition.prefix}#projects`);
+      const next = edition.order[(index + 1) % edition.order.length];
+      await expect(page.locator('.next-project')).toHaveAttribute('href', `${edition.prefix}projects/${next}/`);
+    }
+  });
+
+  test(`${edition.prefix} print view and PDF follow the edition order`, async ({ page, request }) => {
+    await page.goto(`${edition.home}print/`);
+    await expect(page.locator('.print-project h1')).toHaveText(edition.names.map(name => new RegExp(`^${name}`)));
+    const home = new URL(edition.prefix, 'https://labyrinth30.github.io').href;
+    await expect(page.locator('.print-intro a')).toHaveAttribute('href', home);
+    const response = await request.get(`${edition.home}downloads/younha-portfolio.pdf`);
+    expect(response.status()).toBe(200);
+    expect((await response.body()).subarray(0, 5).toString()).toBe('%PDF-');
+  });
+}
+
+for (const width of [320, 1440]) {
+  test(`portfolio/ edition has no viewport overflow at ${width}px`, async ({ page }) => {
+    await page.setViewportSize({ width, height: 1000 });
+    await page.goto('portfolio/');
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+  });
+}

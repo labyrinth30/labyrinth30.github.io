@@ -1,13 +1,5 @@
 ---
-import {getCollection} from 'astro:content';
-import BaseLayout from '../layouts/BaseLayout.astro';
-import ProjectCard from '../components/ProjectCard.astro';
-const projects=(await getCollection('projects')).sort((a,b)=>a.data.number.localeCompare(b.data.number));
+import HomePage from '../components/HomePage.astro';
+import { editions } from '../lib/editions';
 ---
-<BaseLayout title="백엔드 개발자 포트폴리오">
-<section class="hero shell"><div class="hero-top"><span class="eyebrow">BACKEND DEVELOPER · PORTFOLIO</span><span class="mono hero-year">2026</span></div>
-<h1>데이터가 어긋나는 지점을<br />찾아서 고칩니다.</h1>
-<div class="hero-bottom"><p>NestJS로 결제와 비동기 작업을 다뤄온<br class="desktop-break" /> 백엔드 개발자 <strong>이윤하</strong>입니다.</p><a href="mailto:younha0088@gmail.com" class="text-link">younha0088@gmail.com <span aria-hidden="true">↗</span></a></div></section>
-<section id="projects" class="projects-section shell"><div class="section-heading"><h2>선택한 프로젝트</h2><span class="eyebrow">SELECTED WORK / 02</span></div><div class="project-grid">{projects.map(project=><ProjectCard project={project}/>)}</div></section>
-<section class="approach shell"><span class="eyebrow">HOW I WORK</span><p>왜 이렇게 만들었는지,<br />어디까지 확인했는지 같이 적어 둡니다.</p><div><span>비동기 처리와 실패 경계</span><span>동시성과 데이터 정합성</span><span>운영 근거에 기반한 개선</span></div></section>
-</BaseLayout>
+<HomePage edition={editions.main} />

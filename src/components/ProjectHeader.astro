@@ -1,11 +1,11 @@
 ---
 import type { CollectionEntry } from 'astro:content';
-type Props = {readonly project: CollectionEntry<'projects'>};
-const {project} = Astro.props;
+type Props = {readonly project: CollectionEntry<'projects'>; readonly number: string};
+const {project, number} = Astro.props;
 const p=project.data;
 ---
 <header class="project-header">
-<div class="eyebrow">PROJECT {p.number} / {p.category}</div>
+<div class="eyebrow">PROJECT {number} / {p.category}</div>
 <h1>{p.name}<span>{p.tagline}</span></h1>
 <p class="project-description">{p.description}</p>
 <dl class="project-meta"><div><dt>ROLE</dt><dd>{p.role}</dd></div><div><dt>PERIOD</dt><dd>{p.period}</dd></div><div><dt>STACK</dt><dd>{p.stack.join(' · ')}</dd></div></dl>
