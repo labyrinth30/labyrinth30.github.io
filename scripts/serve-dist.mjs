@@ -9,9 +9,7 @@ export async function serveDist(port = 0) {
   const server = createServer(async (req, res) => {
     try {
       const pathname = decodeURIComponent(new URL(req.url, 'http://localhost').pathname);
-      if (pathname === '/portfolio') { res.writeHead(301, { Location: '/portfolio/' }); res.end(); return; }
-      if (!pathname.startsWith('/portfolio/')) { res.writeHead(404); res.end('Not found'); return; }
-      let file = resolve(root, pathname.slice('/portfolio/'.length));
+      let file = resolve(root, pathname.slice(1));
       if (file !== root && !file.startsWith(root + sep)) { res.writeHead(400); res.end(); return; }
       try {
         if ((await stat(file)).isDirectory()) file = resolve(file, 'index.html');
@@ -29,7 +27,7 @@ export async function serveDist(port = 0) {
     }
   });
   await new Promise((ready, reject) => { server.once('error', reject); server.listen(port, '127.0.0.1', ready); });
-  return { url: `http://127.0.0.1:${server.address().port}/portfolio/`, close: () => new Promise((done, reject) => server.close(error => error ? reject(error) : done())) };
+  return { url: `http://127.0.0.1:${server.address().port}/`, close: () => new Promise((done, reject) => server.close(error => error ? reject(error) : done())) };
 }
 if (import.meta.url === pathToFileURL(process.argv[1]).href) {
   const server = await serveDist(Number(process.env.PORT ?? 4173));

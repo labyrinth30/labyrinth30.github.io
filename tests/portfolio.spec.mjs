@@ -61,7 +61,7 @@ test('PDF link returns a real PDF', async ({ page, request }) => {
 test('unknown route returns 404 and a working home link', async ({ page }) => {
   const response = await page.goto('missing-verification-route/');
   expect(response.status()).toBe(404);
-  await page.locator('main a[href="/portfolio/"]').click();
+  await page.locator('main a[href="/"]').click();
   await expect(page.locator('.project-card')).toHaveCount(2);
 });
 
@@ -84,7 +84,7 @@ test('desktop TOC numbers remain on one line', async ({ page }) => {
 
 test('print cover links to the public portfolio', async ({ page }) => {
   await page.goto('print/');
-  const link = page.locator('.print-intro a[href="https://labyrinth30.github.io/portfolio/"]');
+  const link = page.locator('.print-intro a[href="https://labyrinth30.github.io/"]');
   await expect(link).toBeVisible();
-  await expect(link).toHaveText('https://labyrinth30.github.io/portfolio/');
+  await expect(link).toHaveText('https://labyrinth30.github.io/');
 });
