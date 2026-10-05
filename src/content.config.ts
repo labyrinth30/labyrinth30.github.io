@@ -39,6 +39,9 @@ const projects = defineCollection({
 		stack: z.array(requiredText),
 		focus: requiredText,
 		scope: requiredText,
+		links: z
+			.array(z.object({ label: requiredText, url: z.url({ protocol: /^https$/ }) }))
+			.default([]),
 	}),
 });
 export const collections = { cases, projects };

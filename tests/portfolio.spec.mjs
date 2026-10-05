@@ -88,3 +88,12 @@ test('print cover links to the public portfolio', async ({ page }) => {
   await expect(link).toBeVisible();
   await expect(link).toHaveText('https://labyrinth30.github.io/');
 });
+
+test('GGUK links to its Google Play listing', async ({ page }) => {
+  await page.goto('projects/gguk/');
+  const link = page.locator('.project-links a[href="https://play.google.com/store/apps/details?id=com.mino.gguk"]');
+  await expect(link).toBeVisible();
+  await expect(link).toContainText('Google Play');
+  await page.goto('projects/purple/');
+  await expect(page.locator('.project-links')).toHaveCount(0);
+});

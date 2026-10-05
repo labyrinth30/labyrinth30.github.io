@@ -10,4 +10,5 @@ const p=project.data;
 <p class="project-description">{p.description}</p>
 <dl class="project-meta"><div><dt>ROLE</dt><dd>{p.role}</dd></div><div><dt>PERIOD</dt><dd>{p.period}</dd></div><div><dt>STACK</dt><dd>{p.stack.join(' · ')}</dd></div></dl>
 <p class="project-scope">{p.scope} 사례의 테스트 건수와 측정값은 당시 PR·개발 기록 기준입니다.</p>
+{p.links.length>0 && <p class="project-links">{p.links.map(link=><a class="text-link" href={link.url}>{link.label} <span aria-hidden="true">↗</span></a>)}</p>}
 </header>

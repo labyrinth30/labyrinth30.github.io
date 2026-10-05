@@ -388,6 +388,12 @@ img {
 	color: var(--muted);
 	margin-top: var(--space-6);
 }
+.project-links {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--space-6);
+	margin-top: var(--space-6);
+}
 .detail-layout {
 	display: grid;
 	grid-template-columns: 208px minmax(0, 1fr);
