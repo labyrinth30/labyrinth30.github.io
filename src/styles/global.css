@@ -802,10 +802,6 @@ img {
 	.section-heading h2 {
 		font-size: 18px;
 	}
-	.section-heading .eyebrow {
-		font-size: 9px;
-		letter-spacing: 0.05em;
-	}
 	.project-grid {
 		grid-template-columns: minmax(0, 1fr);
 	}
