@@ -1,0 +1,15 @@
+---
+import type { CollectionEntry } from 'astro:content';
+type Props = { readonly project: CollectionEntry<'projects'>; readonly cases: readonly CollectionEntry<'cases'>[] };
+const { project, cases } = Astro.props;
+const highlights = project.data.highlights.map(highlight => {
+  const entry = cases.find(item => item.id === highlight.case);
+  if (!entry) throw new Error(`Highlight in ${project.id} points to unknown case ${highlight.case}.`);
+  // Text uses **bold** markers; odd indexes after splitting are the bold parts.
+  return { id: entry.id, order: entry.data.order, parts: highlight.text.split(/\*\*(.+?)\*\*/) };
+});
+---
+{highlights.length > 0 && <section class="project-highlights" aria-labelledby={`${project.id}-highlights`}>
+<h2 id={`${project.id}-highlights`} class="eyebrow">핵심 성과</h2>
+<ol>{highlights.map(item => <li><a href={`#${item.id}`}><span class="mono">0{item.order}</span><span>{item.parts.map((part, index) => index % 2 === 1 ? <strong>{part}</strong> : part)}</span></a></li>)}</ol>
+</section>}

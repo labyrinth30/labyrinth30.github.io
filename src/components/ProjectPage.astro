@@ -3,6 +3,7 @@ import type { CollectionEntry } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ProjectHeader from './ProjectHeader.astro';
 import ProjectToc from './ProjectToc.astro';
+import ProjectHighlights from './ProjectHighlights.astro';
 import CaseStudy from './CaseStudy.astro';
 import { getProjectCases } from '../lib/cases';
 import { editionPath, getEditionProjects, projectNumber, type Edition } from '../lib/editions';
@@ -15,5 +16,5 @@ const next = projects[(index + 1) % projects.length]?.entry;
 if (!next) throw new Error(`Project ${project.id} has no next project in this edition.`);
 ---
 <BaseLayout title={`${project.data.name} · 설계와 구현`} description={project.data.description} edition={edition}>
-<div class="shell"><a class="back-link" href={editionPath(edition, '#projects')}>← 프로젝트 목록</a><ProjectHeader project={project} number={projectNumber(edition, project.id)}/><div class="detail-layout"><ProjectToc cases={cases}/><div class="cases">{cases.map(entry=><CaseStudy entry={entry}/>)}</div></div><a class="next-project" href={editionPath(edition, `projects/${next.id}/`)}><span class="eyebrow">다음 프로젝트</span><strong>{next.data.name} <span aria-hidden="true">→</span></strong></a></div>
+<div class="shell"><a class="back-link" href={editionPath(edition, '#projects')}>← 프로젝트 목록</a><ProjectHeader project={project} number={projectNumber(edition, project.id)}/><ProjectHighlights project={project} cases={cases}/><div class="detail-layout"><ProjectToc cases={cases}/><div class="cases">{cases.map(entry=><CaseStudy entry={entry}/>)}</div></div><a class="next-project" href={editionPath(edition, `projects/${next.id}/`)}><span class="eyebrow">다음 프로젝트</span><strong>{next.data.name} <span aria-hidden="true">→</span></strong></a></div>
 </BaseLayout>

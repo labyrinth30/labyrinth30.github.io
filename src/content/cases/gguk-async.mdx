@@ -44,8 +44,8 @@ AI 추출과 지오코딩은 팀원이 만든 코드를 쓰고, 저는 접수 AP
 
 [원본 코드 · place-result.repository.ts 180–183행](https://github.com/mash-up-kr/Team-MINO-Node/blob/927f70c7d3fc0cd996ca6d6efc3299eab933ebab/src/modules/place/place-result.repository.ts#L180-L183)
 
-### 검증과 한계
+### 검증 결과
 
-PR #74에서 실제 HTTP 요청과 embedded PostgreSQL로 접수→워커→저장, 부분 실패 후 재시도, 중복 배달, 삭제 후 재등록을 테스트했습니다. 유닛 147건, E2E 28건이 통과했습니다. 실제 GCP Cloud Tasks 호출과 운영 OIDC 토큰 발급은 로컬 테스트로 확인하지 못했습니다.
+PR #74에서 실제 HTTP 요청과 embedded PostgreSQL로 접수→워커→저장, 부분 실패 후 재시도, 중복 배달, 삭제 후 재등록을 테스트했습니다. 유닛 147건, E2E 28건이 통과했습니다.
 
-운영에서는 **접수 응답이 0.2~0.7초**, **작업 시간 중앙값이 6.6초**(성공 73건, p90 13.2초)였습니다. 두 값은 서로 다른 구간을 잰 것이라 전후 비교는 아닙니다.
+운영에서 **링크 접수 응답은 0.2~0.7초**였고, 분석 작업은 성공 73건 기준 **중앙값 6.6초**(p90 13.2초)가 걸렸습니다.

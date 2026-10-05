@@ -39,6 +39,7 @@ const projects = defineCollection({
 		stack: z.array(requiredText),
 		focus: requiredText,
 		scope: requiredText,
+		highlights: z.array(z.object({ case: requiredText, text: requiredText })).default([]),
 		links: z
 			.array(z.object({ label: requiredText, url: z.url({ protocol: /^https$/ }) }))
 			.default([]),
