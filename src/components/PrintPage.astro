@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ProjectHeader from './ProjectHeader.astro';
 import CaseStudy from './CaseStudy.astro';
+import ProjectHighlights from './ProjectHighlights.astro';
 import Activities from './Activities.astro';
 import { getProjectCases } from '../lib/cases';
 import { editionPath, getEditionProjects, type Edition } from '../lib/editions';
@@ -13,7 +14,7 @@ const home = new URL(editionPath(edition), Astro.site).href;
 ---
 <BaseLayout title="포트폴리오 인쇄본" print edition={edition}>
 <div class="print-content shell"><header class="print-intro"><span class="eyebrow">BACKEND DEVELOPER · PORTFOLIO</span><h1>이윤하</h1><p>NestJS로 결제와 비동기 작업을 다뤄온 백엔드 개발자</p><p>younha0088@gmail.com · github.com/labyrinth30</p><p><a href={home}>{home}</a></p></header>
-{content.map(({entry, number, cases})=><section class="print-project"><ProjectHeader project={entry} number={number}/>{cases.map(item=><CaseStudy entry={item} print/>)}</section>)}
+{content.map(({entry, number, cases})=><section class="print-project"><ProjectHeader project={entry} number={number}/><ProjectHighlights project={entry} cases={cases}/>{cases.map(item=><CaseStudy entry={item} print/>)}</section>)}
 <Activities />
 </div>
 </BaseLayout>

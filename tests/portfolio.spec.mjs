@@ -168,3 +168,16 @@ test('multi-sentence descriptions break into one line per sentence', async ({ pa
   await page.goto('projects/gguk/');
   await expect(page.locator('.project-scope .sentence').last()).toHaveText('사례의 테스트 건수와 측정값은 당시 PR·개발 기록 기준입니다.');
 });
+
+test('project highlights summarize each case and link to it', async ({ page }) => {
+  for (const [project, count] of Object.entries({ gguk: 3, purple: 4 })) {
+    await page.goto(`projects/${project}/`);
+    const links = page.locator('.project-highlights li a');
+    await expect(links).toHaveCount(count);
+    await expect(page.locator('.project-highlights strong').first()).toBeVisible();
+    const href = await links.first().getAttribute('href');
+    await links.first().click();
+    await expect(page).toHaveURL(new RegExp(`${href}$`));
+    await expect(page.locator(href)).toBeInViewport();
+  }
+});
