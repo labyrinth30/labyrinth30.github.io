@@ -43,7 +43,7 @@ test('content and original diagram work without JavaScript', async ({ browser, b
   await page.goto('projects/purple/');
   await expect(page.locator('.case-study')).toHaveCount(3);
   await page.locator('.diagram-open').first().click();
-  await expect(page).toHaveURL(/\/diagrams\/billing.svg$/);
+  await expect(page).toHaveURL(/\/diagrams\/query.svg$/);
   await expect(page.locator('svg')).toBeVisible();
   await context.close();
 });
