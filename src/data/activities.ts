@@ -25,9 +25,18 @@ export const activityGroups: readonly ActivityGroup[] = [
   {
     label: 'COMMUNITY',
     items: [
-      { title: 'Mash-Up 16기 Node Team 파트장', period: '2026.02 — 2026.09', emphasis: true },
+      {
+        title: 'Mash-Up 16기 Node Team 파트장',
+        period: '2026.02 — 2026.09',
+        meta: 'IT에 관심 있는 개발자와 디자이너가 함께 모여 협업하고 성장하는 IT 연합동아리',
+        emphasis: true,
+      },
       { title: 'Mash-Up 15기 Node Team', period: '2025.02 — 2025.07' },
-      { title: 'GDG on Campus SKHU Organizer', period: '2023.07 — 2024.06' },
+      {
+        title: 'GDG on Campus SKHU Organizer',
+        period: '2023.07 — 2024.06',
+        meta: 'Google Developers가 지원하는 대학 개발자 커뮤니티',
+      },
     ],
   },
   {
