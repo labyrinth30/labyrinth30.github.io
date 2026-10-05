@@ -1,0 +1,6 @@
+---
+// Renders each sentence of a short text field on its own line.
+type Props = { readonly text: string };
+const sentences = Astro.props.text.split(/(?<=[.!?])\s+(?=\S)/);
+---
+{sentences.map(sentence => <span class="sentence">{sentence}</span>)}

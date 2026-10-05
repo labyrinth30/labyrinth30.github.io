@@ -1,4 +1,5 @@
 ---
+import Sentences from './Sentences.astro';
 import type { CollectionEntry } from 'astro:content';
 import { editionPath, type Edition } from '../lib/editions';
 type Props = {readonly project: CollectionEntry<'projects'>; readonly number: string; readonly edition: Edition};
@@ -8,6 +9,6 @@ const p=project.data;
 <a class="project-card" href={editionPath(edition, `projects/${project.id}/`)}>
 <div class="card-label"><span class="eyebrow">{p.category}</span><span class="mono">/{number}</span></div>
 <div class="project-name">{p.name}<span class="project-arrow" aria-hidden="true">↗</span></div>
-<h3>{p.tagline}</h3><p>{p.description}</p>
+<h3>{p.tagline}</h3><p><Sentences text={p.description}/></p>
 <div class="card-bottom"><span>{p.role}<small>{p.focus}</small></span><span class="case-link">사례 보기 <span aria-hidden="true">→</span></span></div>
 </a>

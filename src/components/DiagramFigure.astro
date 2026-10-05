@@ -1,4 +1,5 @@
 ---
+import Sentences from './Sentences.astro';
 import {pathTo} from '../lib/paths';
 type Props = {readonly diagram: string; readonly caption: string; readonly title: string; readonly prefix: string; readonly print?: boolean};
 const {diagram,caption,title,prefix,print=false}=Astro.props;
@@ -8,9 +9,9 @@ const id=`${prefix}-${diagram}`;
 <figure class="diagram-figure">
 <div class="figure-toolbar"><span class="eyebrow">SYSTEM FLOW</span>{!print && <a class="diagram-open" href={source} data-dialog={id} aria-haspopup="dialog">크게 보기 <span aria-hidden="true">↗</span></a>}</div>
 <div class="diagram-frame"><img src={source} alt={`${title} 흐름도. ${caption}`} loading="eager" /></div>
-<figcaption>{caption}</figcaption>
+<figcaption><Sentences text={caption}/></figcaption>
 </figure>
-{!print && <dialog id={id} aria-label={`${title} 다이어그램 확대`} class="diagram-dialog"><div class="dialog-top"><strong>{title}</strong><button type="button" class="dialog-close" autofocus>닫기 ×</button></div><div class="dialog-body"><img src={source} alt={caption} /></div><p>{caption}</p></dialog>}
+{!print && <dialog id={id} aria-label={`${title} 다이어그램 확대`} class="diagram-dialog"><div class="dialog-top"><strong>{title}</strong><button type="button" class="dialog-close" autofocus>닫기 ×</button></div><div class="dialog-body"><img src={source} alt={caption} /></div><p><Sentences text={caption}/></p></dialog>}
 <script>
 for (const link of document.querySelectorAll<HTMLAnchorElement>('.diagram-open')) {
  const id=link.dataset['dialog'];

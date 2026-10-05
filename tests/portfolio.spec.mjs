@@ -144,3 +144,25 @@ for (const width of [320, 1440]) {
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
   });
 }
+
+test('activities section lists other work on both editions and in print', async ({ page }) => {
+  for (const route of ['./', 'portfolio/', 'print/']) {
+    await page.goto(route);
+    const groups = page.locator('#activities .activity-group h3');
+    await expect(groups).toHaveText(['OTHER PROJECT', 'COMMUNITY', 'STUDY', 'PRESENTATION', 'WRITING']);
+    await expect(page.locator('#activities a[href="https://github.com/mash-up-kr/HGDGDS-Node"]')).toBeVisible();
+    await expect(page.locator('#activities a[href="https://github.com/labyrinth30/Core-JS-Study"]')).toBeVisible();
+    await expect(page.locator('#activities .is-emphasis')).toContainText('파트장');
+  }
+});
+
+test('multi-sentence descriptions break into one line per sentence', async ({ page }) => {
+  await page.goto('./');
+  const kokkok = page.locator('#activities li', { hasText: 'KOKKOK' }).locator('p .sentence');
+  await expect(kokkok).toHaveCount(2);
+  await expect(kokkok.first()).toHaveText('친구들과 예약 일정을 공유하고 준비 상태부터 성공 여부까지 같이 확인하는 앱.');
+  const tops = await kokkok.evaluateAll(spans => spans.map(span => span.getBoundingClientRect().top));
+  expect(tops[1]).toBeGreaterThan(tops[0]);
+  await page.goto('projects/gguk/');
+  await expect(page.locator('.project-scope .sentence').last()).toHaveText('사례의 테스트 건수와 측정값은 당시 PR·개발 기록 기준입니다.');
+});
