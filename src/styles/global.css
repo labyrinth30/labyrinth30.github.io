@@ -197,6 +197,9 @@ img {
 .projects-section {
 	padding-top: var(--space-8);
 }
+.sentence {
+	display: block;
+}
 .section-heading {
 	display: flex;
 	align-items: center;

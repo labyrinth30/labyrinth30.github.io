@@ -1,7 +1,8 @@
 ---
+import Sentences from './Sentences.astro';
 import { activityGroups } from '../data/activities';
 ---
 <section id="activities" class="activities shell">
 <div class="section-heading"><h2>그 밖의 활동</h2></div>
-{activityGroups.map(group=><div class="activity-group"><h3 class="eyebrow">{group.label}</h3><ul>{group.items.map(item=><li class:list={[{ 'is-emphasis': item.emphasis }]}><span class="mono activity-period">{item.period}</span><div><strong>{item.url ? <a href={item.url}>{item.title} <span aria-hidden="true">↗</span></a> : item.title}</strong>{item.meta && <span class="activity-meta">{item.meta}</span>}{item.detail && <p>{item.detail}</p>}</div></li>)}</ul></div>)}
+{activityGroups.map(group=><div class="activity-group"><h3 class="eyebrow">{group.label}</h3><ul>{group.items.map(item=><li class:list={[{ 'is-emphasis': item.emphasis }]}><span class="mono activity-period">{item.period}</span><div><strong>{item.url ? <a href={item.url}>{item.title} <span aria-hidden="true">↗</span></a> : item.title}</strong>{item.meta && <span class="activity-meta">{item.meta}</span>}{item.detail && <p><Sentences text={item.detail}/></p>}</div></li>)}</ul></div>)}
 </section>
