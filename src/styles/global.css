@@ -1061,7 +1061,7 @@ img {
 	}
 	.prose {
 		font-size: 10pt;
-		line-height: 1.7;
+		line-height: 1.6;
 	}
 	.prose h2,
 	.prose h3 {
@@ -1070,7 +1070,7 @@ img {
 		break-after: avoid;
 	}
 	.prose p {
-		margin: 3mm 0;
+		margin: 2.5mm 0;
 		orphans: 3;
 		widows: 3;
 	}
@@ -1105,6 +1105,7 @@ img {
 	}
 	.sources {
 		margin-top: 4mm;
+		break-inside: avoid;
 	}
 	.detail-layout {
 		display: block;
