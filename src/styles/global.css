@@ -1017,6 +1017,10 @@ img {
 		margin-bottom: 8mm;
 		padding-bottom: 8mm;
 	}
+	.case-header {
+		break-inside: avoid;
+		break-after: avoid;
+	}
 	.case-header h2 {
 		font-size: 20pt;
 	}
