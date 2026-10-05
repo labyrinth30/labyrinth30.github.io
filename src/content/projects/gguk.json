@@ -3,7 +3,7 @@
 	"number": "01",
 	"category": "SIDE PROJECT · MASH-UP",
 	"tagline": "비동기 저장과 동시성 처리",
-	"description": "Instagram 링크에서 장소를 뽑아 친구와 같이 쓰는 방에 저장하는 서비스입니다.",
+	"description": "Instagram 링크에서 장소를 뽑아 친구와 같이 쓰는 방에 저장하는 서비스입니다. Google Play에 출시했습니다.",
 	"role": "백엔드 개발",
 	"period": "2026.02 — 현재",
 	"stack": [
@@ -15,5 +15,11 @@
 		"Cloud Tasks"
 	],
 	"focus": "비동기 저장 · 데이터 정합성 · 운영 관측",
-	"scope": "공통 응답·입력 검증·로깅, 링크 접수·워커 API와 저장, 핀·댓글 API를 맡았습니다. AI 추출과 지오코딩은 팀원이 만든 코드를 썼습니다."
+	"scope": "공통 응답·입력 검증·로깅, 링크 접수·워커 API와 저장, 핀·댓글 API를 맡았습니다. AI 추출과 지오코딩은 팀원이 만든 코드를 썼습니다.",
+	"links": [
+		{
+			"label": "Google Play에서 보기",
+			"url": "https://play.google.com/store/apps/details?id=com.mino.gguk"
+		}
+	]
 }
