@@ -6,7 +6,7 @@ const cases = defineCollection({
 	loader: glob({ pattern: "**/*.mdx", base: "./src/content/cases" }),
 	schema: z.object({
 		project: z.enum(["gguk", "purple"]),
-		order: z.number().int().min(1).max(3),
+		order: z.number().int().min(1),
 		title: requiredText,
 		summary: requiredText,
 		role: requiredText,
@@ -19,6 +19,7 @@ const cases = defineCollection({
 			"billing",
 			"query",
 			"recovery",
+			"consent",
 		]),
 		diagramCaption: requiredText,
 		sources: z.array(

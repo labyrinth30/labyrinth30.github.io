@@ -1,6 +1,6 @@
 # 이윤하 · 백엔드 포트폴리오
 
-Astro와 MDX로 만든 정적 포트폴리오입니다. 홈에서 GGUK·Purple 상세로 이동하며 여섯 사례의 본문을 웹과 인쇄 화면이 공유합니다.
+Astro와 MDX로 만든 정적 포트폴리오입니다. 홈에서 GGUK·Purple 상세로 이동하며 모든 사례의 본문을 웹과 인쇄 화면이 공유합니다.
 
 ## 개발
 
@@ -14,7 +14,7 @@ npm run build
 npm run preview
 ```
 
-사이트는 루트 경로(`/`)에서 제공됩니다. `build`는 콘텐츠 스키마 검사, 여섯 Mermaid SVG 생성, 정적 HTML 생성을 순서대로 실행합니다. Mermaid CLI는 Puppeteer의 Chrome을 사용합니다. 브라우저 설치가 비활성화된 환경에서는 `npx puppeteer browsers install chrome`을 실행하거나 `PUPPETEER_EXECUTABLE_PATH`에 설치된 Chrome 실행 파일을 지정하세요.
+사이트는 루트 경로(`/`)에서 제공됩니다. `build`는 콘텐츠 스키마 검사, 사례별 Mermaid SVG 생성, 정적 HTML 생성을 순서대로 실행합니다. Mermaid CLI는 Puppeteer의 Chrome을 사용합니다. 브라우저 설치가 비활성화된 환경에서는 `npx puppeteer browsers install chrome`을 실행하거나 `PUPPETEER_EXECUTABLE_PATH`에 설치된 Chrome 실행 파일을 지정하세요.
 
 ## 콘텐츠
 

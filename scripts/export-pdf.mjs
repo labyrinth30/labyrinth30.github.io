@@ -1,5 +1,5 @@
 import { chromium } from '@playwright/test';
-import { mkdir, rm, rename, readFile } from 'node:fs/promises';
+import { mkdir, rm, rename, readFile, readdir } from 'node:fs/promises';
 import { dirname } from 'node:path';
 import { serveDist } from './serve-dist.mjs';
 
@@ -9,6 +9,7 @@ const editions = [
   { route: 'portfolio/print/', output: 'dist/portfolio/downloads/younha-portfolio.pdf' },
 ];
 
+const expectedCases = (await readdir('src/content/cases')).filter(name => name.endsWith('.mdx')).length;
 const server = await serveDist();
 let browser;
 try {
@@ -40,7 +41,7 @@ async function exportEdition(browser, { route, output }) {
         if (!image.naturalWidth) throw new Error(`Image not loaded: ${image.src}`);
       }));
     });
-    if (await page.locator('.case-study').count() !== 6) throw new Error('Expected all six case studies');
+    if (await page.locator('.case-study').count() !== expectedCases) throw new Error(`Expected all ${expectedCases} case studies`);
     if (failures.length) throw new Error(`Print resources failed: ${failures.join(', ')}`);
     await page.pdf({ path: temporary, format: 'A4', preferCSSPageSize: true, printBackground: true, displayHeaderFooter: true, headerTemplate: '<span></span>', footerTemplate: '<div style="font-size:8px;color:#61655e;width:100%;text-align:center"><span class="pageNumber"></span> / <span class="totalPages"></span></div>' });
     const pdf = await readFile(temporary);
