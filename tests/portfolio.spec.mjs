@@ -144,3 +144,14 @@ for (const width of [320, 1440]) {
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
   });
 }
+
+test('activities section lists other work on both editions and in print', async ({ page }) => {
+  for (const route of ['./', 'portfolio/', 'print/']) {
+    await page.goto(route);
+    const groups = page.locator('#activities .activity-group h3');
+    await expect(groups).toHaveText(['OTHER PROJECT', 'COMMUNITY', 'STUDY', 'PRESENTATION', 'WRITING']);
+    await expect(page.locator('#activities a[href="https://github.com/mash-up-kr/HGDGDS-Node"]')).toBeVisible();
+    await expect(page.locator('#activities a[href="https://github.com/labyrinth30/Core-JS-Study"]')).toBeVisible();
+    await expect(page.locator('#activities .is-emphasis')).toContainText('파트장');
+  }
+});

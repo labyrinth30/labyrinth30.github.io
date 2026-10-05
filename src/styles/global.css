@@ -287,25 +287,54 @@ img {
 .case-link span {
 	margin-left: var(--space-2);
 }
-.approach {
-	display: grid;
-	grid-template-columns: 1fr 2fr 1fr;
-	gap: var(--space-8);
-	align-items: start;
+.activities {
 	padding-block: var(--space-24);
 }
-.approach p {
-	font-size: 22px;
-	line-height: 1.65;
-	letter-spacing: -0.04em;
+.activity-group {
+	display: grid;
+	grid-template-columns: 1fr 3fr;
+	gap: var(--space-8);
+	padding-block: var(--space-6);
+	border-bottom: 1px solid var(--line);
 }
-.approach > div {
+.activity-group h3 {
+	padding-top: var(--space-1);
+}
+.activity-group ul {
+	list-style: none;
+	padding-left: 0;
+}
+.activity-group li {
+	display: grid;
+	grid-template-columns: 9.5rem minmax(0, 1fr);
+	gap: var(--space-6);
+	padding-block: var(--space-2);
+}
+.activity-period {
+	font-size: var(--label);
+	color: var(--muted);
+	padding-top: 0.2em;
+}
+.activity-group strong {
+	font-weight: 500;
+}
+.activity-group .is-emphasis strong {
+	font-weight: 700;
+}
+.activity-group a span {
+	margin-left: var(--space-1);
+}
+.activity-meta {
+	display: block;
 	font-size: var(--small);
 	color: var(--muted);
 }
-.approach > div span {
-	display: block;
-	padding-block: var(--space-1);
+.activity-group li p {
+	max-width: 720px;
+	font-size: var(--small);
+	color: var(--muted);
+	line-height: 1.7;
+	margin-top: var(--space-2);
 }
 .site-footer {
 	border-top: 1px solid var(--ink);
@@ -710,12 +739,6 @@ img {
 	.cases {
 		max-width: none;
 	}
-	.approach {
-		grid-template-columns: 1fr 2fr;
-	}
-	.approach > div {
-		grid-column: 2;
-	}
 	.site-footer {
 		align-items: start;
 		flex-direction: column;
@@ -807,16 +830,20 @@ img {
 	.card-bottom small {
 		font-size: 10px;
 	}
-	.approach {
-		display: block;
+	.activities {
 		padding-block: var(--space-16);
 	}
-	.approach p {
-		font-size: 20px;
-		margin-top: var(--space-6);
+	.activity-group {
+		display: block;
 	}
-	.approach > div {
-		margin-top: var(--space-6);
+	.activity-group ul {
+		margin-top: var(--space-4);
+	}
+	.activity-group li {
+		display: block;
+	}
+	.activity-period {
+		display: block;
 	}
 	.site-footer {
 		padding-block: var(--space-8);
@@ -998,6 +1025,21 @@ img {
 	}
 	.print-project + .print-project {
 		break-before: page;
+	}
+	.print-content .activities {
+		break-before: page;
+		padding-block: 0;
+	}
+	.activity-group {
+		padding-block: 4mm;
+		break-inside: avoid;
+	}
+	.activity-group li {
+		padding-block: 1mm;
+	}
+	.activity-group li p,
+	.activity-meta {
+		font-size: 9pt;
 	}
 	.print-project .project-header {
 		margin-bottom: 8mm;

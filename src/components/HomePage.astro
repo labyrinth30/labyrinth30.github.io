@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ProjectCard from './ProjectCard.astro';
+import Activities from './Activities.astro';
 import { getEditionProjects, type Edition } from '../lib/editions';
 type Props = { readonly edition: Edition };
 const { edition } = Astro.props;
@@ -11,5 +12,5 @@ const projects = await getEditionProjects(edition);
 <h1>데이터가 어긋나는 지점을<br />찾아서 고칩니다.</h1>
 <div class="hero-bottom"><p>NestJS로 결제와 비동기 작업을 다뤄온<br class="desktop-break" /> 백엔드 개발자 <strong>이윤하</strong>입니다.</p><a href="mailto:younha0088@gmail.com" class="text-link">younha0088@gmail.com <span aria-hidden="true">↗</span></a></div></section>
 <section id="projects" class="projects-section shell"><div class="section-heading"><h2>선택한 프로젝트</h2><span class="eyebrow">SELECTED WORK / {String(projects.length).padStart(2, '0')}</span></div><div class="project-grid">{projects.map(({entry, number})=><ProjectCard project={entry} number={number} edition={edition}/>)}</div></section>
-<section class="approach shell"><span class="eyebrow">HOW I WORK</span><p>왜 이렇게 만들었는지,<br />어디까지 확인했는지 같이 적어 둡니다.</p><div><span>비동기 처리와 실패 경계</span><span>동시성과 데이터 정합성</span><span>운영 근거에 기반한 개선</span></div></section>
+<Activities />
 </BaseLayout>
